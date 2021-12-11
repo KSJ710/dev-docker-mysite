@@ -1,8 +1,11 @@
-FROM node:17.0.1-alpine3.14
+FROM node:17.2.0-alpine3.14
 
 ENV USER mysite
 ENV HOME /home/mysite
 ENV LANG C.UTF-8
+
+# hotFix,webpack v6で修正予定
+RUN export NODE_OPTIONS=--openssl-legacy-provider
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \
   && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && apk del tzdata \
