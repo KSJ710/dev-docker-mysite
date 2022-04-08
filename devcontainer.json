@@ -77,7 +77,8 @@
     "VisualStudioExptTeam.vscodeintellicode",
     "vscode-icons-team.vscode-icons",
     "willstakayama.vscode-nextjs-snippets",
-    "xabikos.JavaScriptSnippets"
+    "xabikos.JavaScriptSnippets",
+    "PulkitGangwar.nextjs-snippets"
   ]
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
