@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.194.3/containers/docker-existing-docker-compose
 // If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 {
-  "name": "mysite",
+  "name": "",
 
   // Update the 'dockerComposeFile' list if you have more compose files or use different names.
   // The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
@@ -10,12 +10,12 @@
 
   // The 'service' property is the name of the service for the container that VS Code should
   // use. Update this value and .devcontainer/docker-compose.yml to the real service name.
-  "service": "web",
+  "service": "",
 
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
   //"workspaceFolder": "/workspace",
-  "workspaceFolder": "/home/mysite/app",
+  "workspaceFolder": "",
 
   // Set *default* container specific settings.json values on container create.
   "settings": {
@@ -28,57 +28,7 @@
   },
 
   // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "alefragnani.Bookmarks",
-    "bierner.color-info",
-    "blanu.vscode-styled-jsx",
-    "bradlc.vscode-tailwindcss",
-    "carbonid1.emmet-jss",
-    "castwide.solargraph",
-    "chriseckenrode.vscode-chester-atom",
-    "christian-kohler.npm-intellisense",
-    "christian-kohler.path-intellisense",
-    "chrmarti.regex",
-    "ckolkman.vscode-postgres",
-    "clinyong.vscode-css-modules",
-    "codezombiech.gitignore",
-    "CoenraadS.bracket-pair-colorizer-2",
-    "dbaeumer.vscode-eslint",
-    "docsmsft.docs-markdown",
-    "donjayamanne.githistory",
-    "dsznajder.es7-react-js-snippets",
-    "eamodio.gitlens",
-    "ecmel.vscode-html-css",
-    "eg2.vscode-npm-script",
-    "esbenp.prettier-vscode",
-    "formulahendry.auto-rename-tag",
-    "gencer.html-slim-scss-css-class-completion",
-    "Gruntfuggly.todo-tree",
-    "humao.rest-client",
-    "IBM.output-colorizer",
-    "janisdd.vscode-edit-csv",
-    "jock.svg",
-    "jpoissonnier.vscode-styled-components",
-    "liximomo.sftp",
-    "mechatroner.rainbow-csv",
-    "mhutchie.git-graph",
-    "ms-azuretools.vscode-docker",
-    "MS-CEINTL.vscode-language-pack-ja",
-    "oderwat.indent-rainbow",
-    "pranaygp.vscode-css-peek",
-    "Prisma.prisma",
-    "riazxrazor.html-to-jsx",
-    "ryu1kn.partial-diff",
-    "shardulm94.trailing-spaces",
-    "skyran.js-jsx-snippets",
-    "syler.sass-indented",
-    "visioncan.vscode-jss-snippets",
-    "VisualStudioExptTeam.vscodeintellicode",
-    "vscode-icons-team.vscode-icons",
-    "willstakayama.vscode-nextjs-snippets",
-    "xabikos.JavaScriptSnippets",
-    "PulkitGangwar.nextjs-snippets"
-  ]
+  "extensions": []
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
