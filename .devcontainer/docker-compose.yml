@@ -8,7 +8,7 @@ services:
     image: sample
     container_name: sample
     ports:
-      - "2258:3000"
+      - "2258:2258"
     networks:
       app_net:
         ipv4_address: 192.168.225.8
@@ -27,7 +27,7 @@ services:
       TZ: Asia/Tokyo
     command: postgres -c tcp_keepalives_idle=30 -c tcp_keepalives_interval=10 -c tcp_keepalives_count=2
     ports:
-      - "2259:5432"
+      - "2259:2259"
     networks:
       app_net:
         ipv4_address: 192.168.225.9
