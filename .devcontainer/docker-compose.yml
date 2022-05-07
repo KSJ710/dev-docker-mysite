@@ -5,33 +5,32 @@ services:
     build:
       context: .
       dockerfile: node.dockerfile
-    image: mysite
-    container_name: mysite
+    image: sample
+    container_name: sample
     ports:
-      - "3000:3000"
+      - "2258:3000"
     networks:
       app_net:
-        ipv4_address: 192.168.0.2
+        ipv4_address: 192.168.225.8
     volumes:
-      - ../app:/home/mysite/app
+      - ../app:/home/sample/app
     tty: true
   db:
     image: postgres:14.0-alpine3.14
     container_name: postgres
     environment:
       POSTGRES_USER: ksj
-      POSTGRES_DB: mysite
+      POSTGRES_DB: sample
       POSTGRES_PASSWORD: myroad710
       PGDATE: /var/lib/postgresql/data
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=ja_JP.UTF-8"
       TZ: Asia/Tokyo
-    command: postgres -c tcp_keepalives_idle=30 -c tcp_keepalives_interval=10 -c
-      tcp_keepalives_count=2
+    command: postgres -c tcp_keepalives_idle=30 -c tcp_keepalives_interval=10 -c tcp_keepalives_count=2
     ports:
-      - "5432:5432"
+      - "2259:5432"
     networks:
       app_net:
-        ipv4_address: 192.168.0.3
+        ipv4_address: 192.168.225.9
     volumes:
       - posgre_data:/var/lib/postgresql/data
 
@@ -41,7 +40,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.0.0/24
+        - subnet: 192.168.225.7
 
 volumes:
   posgre_data: null
