@@ -8,16 +8,16 @@ services:
     image: sample
     container_name: sample
     ports:
-      - "2258:2258"
+      - "3002:3002"
     networks:
       app_net:
-        ipv4_address: 192.168.225.8
+        ipv4_address: 192.168.0.2
     volumes:
       - ../app:/home/sample/app
     tty: true
   db:
     image: postgres:14.0-alpine3.14
-    container_name: postgres
+    container_name: sample_postgres
     environment:
       POSTGRES_USER: ksj
       POSTGRES_DB: sample
@@ -27,10 +27,10 @@ services:
       TZ: Asia/Tokyo
     command: postgres -c tcp_keepalives_idle=30 -c tcp_keepalives_interval=10 -c tcp_keepalives_count=2
     ports:
-      - "2259:2259"
+      - "5002:5002"
     networks:
       app_net:
-        ipv4_address: 192.168.225.9
+        ipv4_address: 192.168.0.3
     volumes:
       - posgre_data:/var/lib/postgresql/data
 
@@ -40,7 +40,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.225.7
+        - subnet: 192.168.0.0/24
 
 volumes:
   posgre_data: null

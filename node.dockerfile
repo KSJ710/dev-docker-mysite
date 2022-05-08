@@ -12,7 +12,7 @@ RUN apk update && apk add --no-cache shadow sudo tzdata \
   && echo "root:root710" | chpasswd
 RUN mv /usr/local/lib/node_modules /usr/local/lib/node_modules.tmp \
   && mv /usr/local/lib/node_modules.tmp /usr/local/lib/node_modules \
-  && npm i -g npm@^8.1.1
+  && npm i -g npm@^8.6.0
 #DEV
 RUN apk add --no-cache bash curl git vim
 WORKDIR /home/sample
