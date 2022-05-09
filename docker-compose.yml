@@ -27,7 +27,7 @@ services:
       TZ: Asia/Tokyo
     command: postgres -c tcp_keepalives_idle=30 -c tcp_keepalives_interval=10 -c tcp_keepalives_count=2
     ports:
-      - "5002:5432"
+      - "5002:5002"
     networks:
       app_net:
         ipv4_address: 192.168.225.10
