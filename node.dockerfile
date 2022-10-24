@@ -18,7 +18,7 @@ RUN mv /usr/local/lib/node_modules /usr/local/lib/node_modules.tmp \
   && npm i -g npm@^8.6.0
 #DEV
 RUN apk add --no-cache bash curl git vim
-WORKDIR /home/my_web_sample
+WORKDIR /home/my_web_sample/app
 RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
 USER ${USER}
