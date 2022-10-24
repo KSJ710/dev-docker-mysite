@@ -5,23 +5,23 @@ services:
     build:
       context: .
       dockerfile: node.dockerfile
-    image: my_sample_web
-    container_name: my_sample_web
+    image: my_web_sample
+    container_name: my_web_sample
     ports:
       - "3000:3000"
     networks:
       app_net:
         ipv4_address: 192.168.229.26
     volumes:
-      - ../app:/home/my_sample_web/app
+      - ../app:/home/my_web_sample/app
     tty: true
   db:
     image: postgres:14.5-alpine3.16
     container_name: my_sample_postgres
     environment:
-      POSTGRES_USER: my_sample_web
-      POSTGRES_DB: my_sample_web
-      POSTGRES_PASSWORD: my_sample_web
+      POSTGRES_USER: my_web_sample
+      POSTGRES_DB: my_web_sample
+      POSTGRES_PASSWORD: my_web_sample
       PGDATE: /var/lib/postgresql/data
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=ja_JP.UTF-8"
       TZ: Asia/Tokyo
