@@ -11,7 +11,6 @@
   // The 'service' property is the name of the service for the container that VS Code should
   // use. Update this value and .devcontainer/docker-compose.yml to the real service name.
   "service": "web",
-  "remoteUser": "my_web_sample",
 
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
@@ -78,7 +77,7 @@
     "willstakayama.vscode-nextjs-snippets",
     "xabikos.JavaScriptSnippets",
     "PulkitGangwar.nextjs-snippets"
-  ]
+  ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
@@ -90,8 +89,8 @@
   // "shutdownAction": "none",
 
   // Uncomment the next line to run commands after the container is created - for example installing curl.
-  // "postCreateCommand": "apt-get update && apt-get install -y curl",
+  // "postCreateCommand": "sudo apk add bash curl git vim starship",
 
   // Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-  // "remoteUser": "vscode"
+  "remoteUser": "my_web_sample"
 }

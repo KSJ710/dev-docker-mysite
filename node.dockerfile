@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:current-alpine3.16
 
 ENV USER my_web_sample
 ENV HOST_USER keiju
@@ -17,9 +17,9 @@ RUN mv /usr/local/lib/node_modules /usr/local/lib/node_modules.tmp \
   && npm i -g npm@^8.19.3
 #DEV
 RUN apk add --no-cache bash curl git vim starship
-#WORKDIR /home/my_web_sample
+# WORKDIR /home/my_web_sample
 # RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
-USER ${USER}
-WORKDIR ${HOME}/app
+# USER ${USER}
+# WORKDIR ${HOME}/app
 CMD [ "bash" ]
