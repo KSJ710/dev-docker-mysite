@@ -78,7 +78,8 @@
     "xabikos.JavaScriptSnippets",
     "PulkitGangwar.nextjs-snippets",
     "andys8.jest-snippets",
-    "firsttris.vscode-jest-runner"
+    "firsttris.vscode-jest-runner",
+    "TabNine.tabnine-vscode"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
