@@ -76,7 +76,9 @@
     "vscode-icons-team.vscode-icons",
     "willstakayama.vscode-nextjs-snippets",
     "xabikos.JavaScriptSnippets",
-    "PulkitGangwar.nextjs-snippets"
+    "PulkitGangwar.nextjs-snippets",
+    "andys8.jest-snippets",
+    "firsttris.vscode-jest-runner"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
