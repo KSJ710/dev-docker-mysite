@@ -5,23 +5,23 @@ services:
     build:
       context: .
       dockerfile: node.dockerfile
-    image: my_web_sample
-    container_name: my_web_sample
+    image: template
+    container_name: template
     ports:
       - "3000:3000"
     networks:
       app_net:
         ipv4_address: 192.168.229.26
     volumes:
-      - ../app:/home/my_web_sample/app
+      - ../app:/home/template/app
     tty: true
   db:
     image: postgres:14.5-alpine3.16
-    container_name: my_web_sample_postgres
+    container_name: template_postgres
     environment:
-      POSTGRES_USER: my_web_sample
-      POSTGRES_DB: my_web_sample
-      POSTGRES_PASSWORD: my_web_sample
+      POSTGRES_USER: template
+      POSTGRES_DB: template
+      POSTGRES_PASSWORD: template
       PGDATE: /var/lib/postgresql/data
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=ja_JP.UTF-8"
       TZ: Asia/Tokyo
@@ -32,7 +32,7 @@ services:
       app_net:
         ipv4_address: 192.168.229.27
     volumes:
-      - posgre_data:/var/lib/postgresql/data
+      - ../db:/var/lib/postgresql/data
   smtp:
     image: schickling/mailcatcher
     ports:
@@ -49,6 +49,3 @@ networks:
       driver: default
       config:
         - subnet: 192.168.229.25/24
-
-volumes:
-  posgre_data: null
