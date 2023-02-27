@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: node.dockerfile
+      dockerfile: app.dockerfile
     image: template
     container_name: template
     ports:
