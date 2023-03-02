@@ -2,35 +2,27 @@ version: "3.9"
 
 services:
   web:
-    build:
-      context: .
-      dockerfile: app.dockerfile
-    image: template
-    container_name: template
+    build: .
+    container_name: ${APP_NAME?err}
     ports:
       - "3000:3000"
     networks:
       app_net:
-        ipv4_address: 192.168.229.26
+        ipv4_address: 192.202.3.36
     volumes:
-      - ../app:/home/template/app
+      - ../app:/home/${APP_NAME?err}/app
     tty: true
   db:
     image: postgres:14.5-alpine3.16
-    container_name: template_postgres
-    environment:
-      POSTGRES_USER: template
-      POSTGRES_DB: template
-      POSTGRES_PASSWORD: template
-      PGDATE: /var/lib/postgresql/data
-      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=ja_JP.UTF-8"
-      TZ: Asia/Tokyo
+    container_name: ${APP_NAME?err}_postgres
+    env_file:
+      - db.env
     command: postgres -c tcp_keepalives_idle=30 -c tcp_keepalives_interval=10 -c tcp_keepalives_count=2
     ports:
       - "5432:5432"
     networks:
       app_net:
-        ipv4_address: 192.168.229.27
+        ipv4_address: 192.202.3.35
     volumes:
       - ../db:/var/lib/postgresql/data
   smtp:
@@ -40,7 +32,7 @@ services:
       - "1025:1025"
     networks:
       app_net:
-        ipv4_address: 192.168.229.28
+        ipv4_address: 192.202.3.34
 
 networks:
   app_net:
@@ -48,4 +40,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.229.25/24
+        - subnet: 192.202.3.33/24

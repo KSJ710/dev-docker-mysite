@@ -1,15 +1,13 @@
 FROM node:current-alpine3.16
 
-ENV USER terraform
-ENV HOST_USER keiju
-ENV HOME /home/${USER}
+ARG USER=template
+ARG HOME=/home/${USER}
 ENV LANG C.UTF-8
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \
   && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && apk del tzdata \
-  && useradd -m ${USER} -u 1001 \
-  && useradd ${HOST_USER} -u 1002 \
-  && echo "template:template" | chpasswd && echo "template ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+  && useradd -m ${USER}  \
+  && echo "${USER}:${USER}" | chpasswd && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
   && echo "Set disable_coredump false" >> /etc/sudo.conf \
   && echo "root:root" | chpasswd
 RUN mv /usr/local/lib/node_modules /usr/local/lib/node_modules.tmp \
@@ -17,9 +15,6 @@ RUN mv /usr/local/lib/node_modules /usr/local/lib/node_modules.tmp \
   && npm i -g npm@^8.19.3
 #DEV
 RUN apk add --no-cache bash curl git vim starship
-# WORKDIR /home/terraform
 # RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
-# USER ${USER}
-# WORKDIR ${HOME}/app
 CMD [ "bash" ]
