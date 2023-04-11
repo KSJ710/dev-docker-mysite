@@ -1,6 +1,6 @@
-FROM node:current-alpine3.16
+FROM hashicorp/packer:latest
 
-ARG USER=template
+ARG USER=packer
 ARG HOME=/home/${USER}
 ENV LANG C.UTF-8
 
