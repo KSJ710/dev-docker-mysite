@@ -1,4 +1,4 @@
-FROM node:current-alpine3.16
+FROM hashicorp/terraform:latest
 
 ARG USER=terraform
 ARG HOME=/home/${USER}
