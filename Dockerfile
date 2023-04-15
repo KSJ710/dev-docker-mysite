@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:latest
+FROM docker:23.0.3-alpine3.17
 
 ARG USER=terraform
 ARG HOME=/home/${USER}
@@ -9,8 +9,9 @@ RUN apk update && apk add --no-cache shadow sudo tzdata \
   && useradd -m ${USER}  \
   && echo "${USER}:${USER}" | chpasswd && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
   && echo "Set disable_coredump false" >> /etc/sudo.conf \
-  && echo "root:root" | chpasswd
+  && echo "root:root" | chpasswd \
+  && sudo groupadd docker && sudo usermod -aG docker ${USER}
 RUN apk add --no-cache bash curl git vim starship
 # RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
-CMD [ "bash" ]
+# CMD [ "bash" ]

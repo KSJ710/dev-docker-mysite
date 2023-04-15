@@ -4,8 +4,7 @@ services:
   iac:
     build: .
     container_name: ${APP_NAME?err}
-    ports:
-      - "3000:3000"
     volumes:
       - ../app:/home/${APP_NAME?err}/app
     tty: true
+    privileged: true
