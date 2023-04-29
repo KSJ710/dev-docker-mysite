@@ -21,7 +21,7 @@ RUN find /usr/local/lib/aws-cli/awscli/data -name completions-1*.json -delete
 RUN find /usr/local/lib/aws-cli/awscli/botocore/data -name examples-1.json -delete
 RUN (cd /usr/local/lib/aws-cli; for a in *.so*; do test -f /lib/$a && rm $a; done)
 
-FROM docker:23.0.3-alpine${ALPINE_VERSION}
+FROM docker:23.0.4-alpine${ALPINE_VERSION}
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/
 RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
