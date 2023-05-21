@@ -35,6 +35,7 @@ ENV LANG C.UTF-8
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \
   && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && apk del tzdata \
+  && groupadd -g ${GID} ${GROUPNAME} \
   && useradd -m -u ${UID} -g ${GID} ${USERNAME}  \
   && echo "${USERNAME}:${GROUPNAME}" | chpasswd && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
   && echo "Set disable_coredump false" >> /etc/sudo.conf \
