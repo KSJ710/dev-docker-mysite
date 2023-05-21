@@ -32,7 +32,7 @@ services:
       app_net:
         ipv4_address: 192.168.229.27
     volumes:
-      - posgre_data:/var/lib/postgresql/data
+      - ../postgresql_data:/var/lib/postgresql/data
   smtp:
     image: schickling/mailcatcher
     ports:
