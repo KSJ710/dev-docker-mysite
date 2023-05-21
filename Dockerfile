@@ -25,7 +25,7 @@ FROM docker:23.0.4-alpine${ALPINE_VERSION}
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/
 RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
-ARG USER=terraform
+ARG USERNAME=terraform
 ARG GROUPNAME=terraform
 ARG UID=1001
 ARG GID=1001
