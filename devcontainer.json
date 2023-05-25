@@ -42,9 +42,10 @@
         "MS-CEINTL.vscode-language-pack-ja",
         "oderwat.indent-rainbow",
         "shardulm94.trailing-spaces",
-        "soerenuhrbach.vscode-deepl",
         "yzhang.markdown-all-in-one",
-        "ZainChen.json"
+        "ZainChen.json",
+        "TabNine.tabnine-vscode",
+        "hashicorp.terraform"
       ]
     }
   },
