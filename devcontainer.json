@@ -29,6 +29,7 @@
         }
       },
       "extensions": [
+        "GitHub.vscode-github-actions",
         "genieai.chatgpt-vscode",
         "streetsidesoftware.code-spell-checker",
         "alefragnani.Bookmarks",
