@@ -7,6 +7,12 @@ services:
       dockerfile: node.dockerfile
     image: my_web_sample
     container_name: my_web_sample
+    environment:
+      DB_HOST: 192.168.229.27
+      DB_PORT: 5432
+      DB_NAME: my_web_sample
+      DB_USERNAME: my_web_sample
+      DB_PASSWORD: my_web_sample
     ports:
       - "3000:3000"
     networks:
