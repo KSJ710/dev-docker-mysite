@@ -2,8 +2,8 @@ FROM node:current-alpine3.16
 
 ARG USERNAME=my_web_sample
 ARG GROUPNAME=my_web_sample
-ARG UID=1001
-ARG GID=1001
+ARG UID=1710
+ARG GID=1710
 ARG HOME=/home/${USERNAME}
 ENV LANG C.UTF-8
 
