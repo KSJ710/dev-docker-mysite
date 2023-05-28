@@ -29,6 +29,7 @@
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
+        "TabNine.tabnine-vscode",
         "GitHub.vscode-github-actions",
         "genieai.chatgpt-vscode",
         "streetsidesoftware.code-spell-checker",
@@ -47,7 +48,6 @@
         "shardulm94.trailing-spaces",
         "yzhang.markdown-all-in-one",
         "ZainChen.json",
-        "TabNine.tabnine-vscode",
         "hashicorp.terraform"
       ]
     }
