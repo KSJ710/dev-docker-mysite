@@ -27,8 +27,8 @@ RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
 ARG USERNAME=terraform
 ARG GROUPNAME=terraform
-ARG UID=1001
-ARG GID=1001
+ARG UID=1710
+ARG GID=1710
 ARG HOME=/home/${USERNAME}
 ARG TERRAFORM_VERSION=1.4.5
 ENV LANG C.UTF-8
