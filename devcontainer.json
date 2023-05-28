@@ -29,6 +29,7 @@
         }
       },
       "extensions": [
+        "TabNine.tabnine-vscode",
         "GitHub.vscode-github-actions",
         "genieai.chatgpt-vscode",
         "streetsidesoftware.code-spell-checker",
@@ -82,8 +83,7 @@
         "xabikos.JavaScriptSnippets",
         "PulkitGangwar.nextjs-snippets",
         "andys8.jest-snippets",
-        "firsttris.vscode-jest-runner",
-        "TabNine.tabnine-vscode"
+        "firsttris.vscode-jest-runner"
       ]
     }
   },
