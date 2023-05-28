@@ -14,6 +14,8 @@ RUN apk update && apk add --no-cache shadow sudo tzdata \
   && echo "${USERNAME}:${GROUPNAME}" | chpasswd && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
   && echo "Set disable_coredump false" >> /etc/sudo.conf \
   && echo "root:root" | chpasswd
+
+USER ${USERNAME}
 RUN mv /usr/local/lib/node_modules /usr/local/lib/node_modules.tmp \
   && mv /usr/local/lib/node_modules.tmp /usr/local/lib/node_modules \
   && npm i -g npm@^9.6.5
@@ -23,6 +25,5 @@ RUN apk add --no-cache bash curl git vim starship
 # WORKDIR /home/my_web_sample
 # RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
-# USER ${USERNAME}
 # WORKDIR ${HOME}/app
 CMD [ "bash" ]
