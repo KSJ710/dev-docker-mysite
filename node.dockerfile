@@ -1,4 +1,4 @@
-FROM node:current-alpine3.16
+FROM node:20.2-alpine3.17
 
 ARG USERNAME=my_web_sample
 ARG GROUPNAME=my_web_sample

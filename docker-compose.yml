@@ -12,6 +12,7 @@ services:
       DB_PORT: 5432
       DB_NAME: my_web_sample
       DB_USERNAME: my_web_sample
+      DB_PASSWORD: my_web_sample
       DB_PASSEMAIL_SERVER_USER: ""
       EMAIL_SERVER_PASSWORD: ""
       EMAIL_SERVER_HOST: smtp
