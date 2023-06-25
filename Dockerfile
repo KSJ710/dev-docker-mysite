@@ -46,6 +46,7 @@ RUN apk add --no-cache git bash wget vim starship \
   && sudo unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && sudo mv terraform /usr/bin/terraform
 
+COPY .bash_aliases "/home/${USERNAME}/"
 
 # RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 

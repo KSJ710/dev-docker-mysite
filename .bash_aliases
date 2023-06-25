@@ -1,0 +1,5 @@
+alias ti='terraform init'
+alias tfr='terraform fmt -recursive'
+alias tp='terraform plan'
+alias taa='terraform apply -auto-approve'
+alias taad='terraform apply -auto-approve -destroy'
