@@ -1,8 +1,8 @@
-ARG ALPINE_VERSION=3.17
+ARG ALPINE_VERSION=3.18
 
-FROM python:3.10-alpine${ALPINE_VERSION} as builder
+FROM python:3.12-alpine${ALPINE_VERSION} as builder
 
-ARG AWS_CLI_VERSION=2.11.27
+ARG AWS_CLI_VERSION=2.12.3
 
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
 RUN git clone --single-branch --depth 1 -b ${AWS_CLI_VERSION} https://github.com/aws/aws-cli.git
@@ -30,7 +30,7 @@ ARG GROUPNAME=terraform
 ARG UID=1710
 ARG GID=1710
 ARG HOME=/home/${USERNAME}
-ARG TERRAFORM_VERSION=1.4.6
+ARG TERRAFORM_VERSION=1.5.1
 ENV LANG C.UTF-8
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \
