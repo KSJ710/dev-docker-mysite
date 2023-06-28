@@ -1,4 +1,5 @@
 alias ti='terraform init'
+alias tc='terraform console'
 alias tfr='terraform fmt -recursive'
 alias tp='terraform plan'
 alias taa='terraform apply -auto-approve'

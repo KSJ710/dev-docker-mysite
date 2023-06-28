@@ -1,8 +1,8 @@
-ARG ALPINE_VERSION=3.17
+ARG ALPINE_VERSION=3.18
 
-FROM python:3.10-alpine${ALPINE_VERSION} as builder
+FROM python:3.11.4-alpine${ALPINE_VERSION} as builder
 
-ARG AWS_CLI_VERSION=2.11.27
+ARG AWS_CLI_VERSION=2.12.3
 
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
 RUN git clone --single-branch --depth 1 -b ${AWS_CLI_VERSION} https://github.com/aws/aws-cli.git
@@ -21,7 +21,7 @@ RUN find /usr/local/lib/aws-cli/awscli/data -name completions-1*.json -delete
 RUN find /usr/local/lib/aws-cli/awscli/botocore/data -name examples-1.json -delete
 RUN (cd /usr/local/lib/aws-cli; for a in *.so*; do test -f /lib/$a && rm $a; done)
 
-FROM docker:23.0.4-alpine${ALPINE_VERSION}
+FROM docker:24.0.2-alpine${ALPINE_VERSION}
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/
 RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
