@@ -47,6 +47,7 @@ RUN apk add --no-cache git bash wget vim starship \
   && sudo mv terraform /usr/bin/terraform
 
 COPY .bash_aliases "/home/${USERNAME}/"
+COPY .bash_functions "/home/${USERNAME}/"
 
 # RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
