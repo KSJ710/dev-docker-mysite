@@ -1,3 +1,4 @@
+alias tsl='terraform state list'
 alias taa='terraform apply -auto-approve'
 alias taad='terraform apply -auto-approve -destroy'
 alias taaro='terraform apply -auto-approve -refresh-only'
