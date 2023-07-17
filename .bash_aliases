@@ -1,4 +1,6 @@
 alias tsl='terraform state list'
+alias tss='terraform state show'
+alias tsp='terraform state pull'
 alias taa='terraform apply -auto-approve'
 alias taad='terraform apply -auto-approve -destroy'
 alias taaro='terraform apply -auto-approve -refresh-only'
