@@ -30,7 +30,7 @@ ARG GROUPNAME=terraform
 ARG UID=1710
 ARG GID=1710
 ARG HOME=/home/${USERNAME}
-ARG TERRAFORM_VERSION=1.5.1
+ARG TERRAFORM_VERSION=1.5.5
 ENV LANG C.UTF-8
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \
@@ -41,7 +41,7 @@ RUN apk update && apk add --no-cache shadow sudo tzdata \
   && echo "Set disable_coredump false" >> /etc/sudo.conf \
   && echo "root:root" | chpasswd \
   && sudo groupadd docker && sudo usermod -aG docker ${USERNAME}
-RUN apk add --no-cache git bash wget vim starship \
+RUN apk add --no-cache git bash wget vim starship bind-tools \
   && sudo wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && sudo unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && sudo mv terraform /usr/bin/terraform
