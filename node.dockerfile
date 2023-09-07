@@ -16,7 +16,8 @@ RUN apk update && apk add --no-cache shadow sudo tzdata \
   && echo "root:root" | chpasswd
 
 RUN npm i -g npm@^9.6.7
-RUN apk add --no-cache bash curl git vim starship
+# dev
+RUN apk add --no-cache bash curl git vim starship less
 
 # WORKDIR /home/my_web_sample
 # RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
