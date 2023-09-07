@@ -29,6 +29,8 @@
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
+        "mhutchie.git-graph",
+        "damildrizzy.fastapi-snippets",
         "usernamehw.errorlens",
         "naumovs.color-highlight",
         "TabNine.tabnine-vscode",
