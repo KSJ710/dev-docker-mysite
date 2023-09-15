@@ -8,7 +8,7 @@ services:
       - "3000:3000"
     networks:
       app_net:
-        ipv4_address: 192.202.3.36
+        ipv4_address: 192.23.9.19
     volumes:
       - ../app:/home/${APP_NAME?err}/app
     tty: true
@@ -22,7 +22,7 @@ services:
       - "5432:5432"
     networks:
       app_net:
-        ipv4_address: 192.202.3.35
+        ipv4_address: 192.23.9.18
     volumes:
       - ../db:/var/lib/postgresql/data
   smtp:
@@ -32,7 +32,7 @@ services:
       - "1025:1025"
     networks:
       app_net:
-        ipv4_address: 192.202.3.34
+        ipv4_address: 192.23.9.17
 
 networks:
   app_net:
@@ -40,4 +40,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.202.3.33/24
+        - subnet: 192.23.9.16/24
