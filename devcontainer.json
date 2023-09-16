@@ -30,7 +30,7 @@
       },
       "extensions": [
         "naumovs.color-highlight",
-        "TabNine.tabnine-vscode",
+        "GitHub.copilot",
         "GitHub.vscode-github-actions",
         "genieai.chatgpt-vscode",
         "streetsidesoftware.code-spell-checker",
