@@ -4,6 +4,11 @@ services:
   iac:
     build: .
     container_name: ${APP_NAME?err}
+    ports:
+      - "3333:3333"
+    networks:
+      app_net:
+        ipv4_address: 192.23.129.23
     volumes:
       - ../app:/home/${APP_NAME?err}/app
     tty: true
