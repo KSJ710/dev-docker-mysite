@@ -50,7 +50,7 @@
         "shardulm94.trailing-spaces",
         "yzhang.markdown-all-in-one",
         "ZainChen.json",
-        "hashicorp.terraform_for_my_web_sample_on_s3"
+        "hashicorp.terraform"
       ]
     }
   },
@@ -70,5 +70,5 @@
   // "postCreateCommand": "sudo apk add bash curl git vim starship",
 
   // Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "terraform_for_my_web_sample_on_s3"
+  "remoteUser": "terraform"
 }

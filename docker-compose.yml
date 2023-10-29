@@ -3,14 +3,14 @@ version: "3.9"
 services:
   terraform:
     build: .
-    container_name: ${APP_NAME?err}
+    container_name: ${CONTAINER_NAME?err}
     ports:
       - "2222:2222"
     networks:
       app_net:
-        ipv4_address: 192.23.10.6
+        ipv4_address: 192.22.10.30
     volumes:
-      - ../app:/home/${APP_NAME?err}/app
+      - ../app:/home/terraform/app
     tty: true
     privileged: true
 networks:
@@ -19,4 +19,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.23.10.5/24
+        - subnet: 192.22.10.29/24
