@@ -15,7 +15,7 @@
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
   // "workspaceFolder": "/workspace",
-  "workspaceFolder": "/home/terraform_for_my_web_sample_on_s3/app",
+  "workspaceFolder": "/home/terraform/app",
 
   "customizations": {
     "vscode": {
