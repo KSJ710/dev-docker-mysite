@@ -25,12 +25,12 @@ FROM docker:24.0.2-alpine${ALPINE_VERSION}
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/
 RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
-ARG USERNAME=terraform
-ARG GROUPNAME=terraform
+ARG USERNAME=terraform_for_my_web_sample_on_s3
+ARG GROUPNAME=terraform_for_my_web_sample_on_s3
 ARG UID=1710
 ARG GID=1710
 ARG HOME=/home/${USERNAME}
-ARG TERRAFORM_VERSION=1.5.5
+ARG TERRAFORM_VERSION=1.6.2
 ENV LANG C.UTF-8
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \

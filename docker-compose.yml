@@ -1,11 +1,11 @@
 version: "3.9"
 
 services:
-  iac:
+  terraform:
     build: .
     container_name: ${APP_NAME?err}
     ports:
-      - "1111:1111"
+      - "2222:2222"
     networks:
       app_net:
         ipv4_address: 192.23.10.6
