@@ -42,8 +42,8 @@ RUN apk update && apk add --no-cache shadow sudo tzdata \
   && echo "root:root" | chpasswd \
   && sudo groupadd docker && sudo usermod -aG docker ${USERNAME}
 RUN apk add --no-cache git bash vim starship less wget bind-tools \
-  && sudo wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
-  && sudo unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+  && sudo wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_arm64.zip \
+  && sudo unzip terraform_${TERRAFORM_VERSION}_linux_arm64.zip \
   && sudo mv terraform /usr/bin/terraform
 
 COPY .bash_aliases "/home/${USERNAME}/"
