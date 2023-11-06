@@ -5,7 +5,7 @@ services:
     build: .
     container_name: ${CONTAINER_NAME?err}
     ports:
-      - "1111:1111"
+      - "11111:11111"
     networks:
       app_net:
         ipv4_address: 192.1.10.6
