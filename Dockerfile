@@ -30,7 +30,7 @@ ARG GROUPNAME=terraform
 ARG UID=1710
 ARG GID=1710
 ARG HOME=/home/${USERNAME}
-ARG TERRAFORM_VERSION=1.5.5
+ARG TERRAFORM_VERSION=1.6.2
 ENV LANG C.UTF-8
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \
