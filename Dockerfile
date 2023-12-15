@@ -1,9 +1,9 @@
 ARG ALPINE_VERSION=3.18
 ARG DOCKER_ALPINE_VERSION=3.19
 
-FROM python:3.12.1-alpine${ALPINE_VERSION} as builder
+FROM python:3.11.7-alpine${ALPINE_VERSION} as builder
 
-ARG AWS_CLI_VERSION=2.12.3
+ARG AWS_CLI_VERSION=2.15.1
 
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
 RUN git clone --single-branch --depth 1 -b ${AWS_CLI_VERSION} https://github.com/aws/aws-cli.git
