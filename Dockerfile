@@ -1,6 +1,7 @@
 ARG ALPINE_VERSION=3.18
+ARG DOCKER_ALPINE_VERSION=3.19
 
-FROM python:3.11.4-alpine${ALPINE_VERSION} as builder
+FROM python:3.12.1-alpine${ALPINE_VERSION} as builder
 
 ARG AWS_CLI_VERSION=2.12.3
 
@@ -21,7 +22,7 @@ RUN find /usr/local/lib/aws-cli/awscli/data -name completions-1*.json -delete
 RUN find /usr/local/lib/aws-cli/awscli/botocore/data -name examples-1.json -delete
 RUN (cd /usr/local/lib/aws-cli; for a in *.so*; do test -f /lib/$a && rm $a; done)
 
-FROM docker:24.0.2-alpine${ALPINE_VERSION}
+FROM docker:24.0.7-alpine${DOCKER_ALPINE_VERSION}
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/
 RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
@@ -30,7 +31,7 @@ ARG GROUPNAME=terraform
 ARG UID=1710
 ARG GID=1710
 ARG HOME=/home/${USERNAME}
-ARG TERRAFORM_VERSION=1.6.2
+ARG TERRAFORM_VERSION=1.6.6
 ENV LANG C.UTF-8
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \
