@@ -1,4 +1,4 @@
-FROM node:20.2-alpine3.17
+FROM node:21.6-alpine3.18
 
 ARG USERNAME=my_web_sample
 ARG GROUPNAME=my_web_sample
@@ -15,7 +15,7 @@ RUN apk update && apk add --no-cache shadow sudo tzdata \
   && echo "Set disable_coredump false" >> /etc/sudo.conf \
   && echo "root:root" | chpasswd
 
-RUN npm i -g npm@^9.6.7
+RUN npm i -g npm@^10.3.0
 # dev
 RUN apk add --no-cache bash curl git vim starship less
 
