@@ -22,7 +22,7 @@ RUN npm i -g npm@^10.5.0
 RUN apt-get install -y vim less
 
 # # starshipプロンプトのインストール
-# RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
+RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
 # ユーザーのホームディレクトリに作業ディレクトリを設定
 WORKDIR ${HOME}/app
