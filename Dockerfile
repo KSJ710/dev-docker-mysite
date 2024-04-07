@@ -24,7 +24,11 @@ RUN apt-get install -y vim less
 # # starshipプロンプトのインストール
 RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
+COPY .bash_profile ${HOME}/
+COPY .bashrc ${HOME}/
+
 # ユーザーのホームディレクトリに作業ディレクトリを設定
 WORKDIR ${HOME}/app
+
 
 CMD [ "bash" ]
