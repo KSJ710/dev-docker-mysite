@@ -30,7 +30,7 @@ ARG GROUPNAME=terraform
 ARG UID=1710
 ARG GID=1710
 ARG HOME=/home/${USERNAME}
-ARG TERRAFORM_VERSION=1.6.2
+ARG TERRAFORM_VERSION=1.8.2
 ENV LANG C.UTF-8
 
 RUN apk update && apk add --no-cache shadow sudo tzdata \
@@ -41,14 +41,17 @@ RUN apk update && apk add --no-cache shadow sudo tzdata \
   && echo "Set disable_coredump false" >> /etc/sudo.conf \
   && echo "root:root" | chpasswd \
   && sudo groupadd docker && sudo usermod -aG docker ${USERNAME}
-RUN apk add --no-cache git bash vim starship less wget bind-tools \
+RUN apk add --no-cache git bash vim less wget bind-tools \
   && sudo wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && sudo unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && sudo mv terraform /usr/bin/terraform
 
+RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
+RUN echo "alias ll='ls -l'" >> ~/.bashrc \
+  && echo "alias la='ls -la'" >> ~/.bashrc \
+  && echo "alias l='ls -CF'" >> ~/.bashrc \
+  && echo "eval $(starship init bash)" >> ~/.bashrc
 COPY .bash_aliases "/home/${USERNAME}/"
 COPY .bash_functions "/home/${USERNAME}/"
 
-# RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
-
-# CMD [ "bash" ]
+CMD [ "bash" ]
