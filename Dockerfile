@@ -33,7 +33,7 @@ ARG HOME=/home/${USERNAME}
 ARG TERRAFORM_VERSION=1.8.2
 ENV LANG C.UTF-8
 
-RUN apk update && apk add --no-cache shadow sudo tzdata \
+RUN apk update && apk add --no-cache shadow curl sudo tzdata \
   && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && apk del tzdata \
   && groupadd -g ${GID} ${GROUPNAME} \
   && useradd -m -u ${UID} -g ${GID} ${USERNAME}  \
@@ -50,7 +50,7 @@ RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 RUN echo "alias ll='ls -l'" >> ~/.bashrc \
   && echo "alias la='ls -la'" >> ~/.bashrc \
   && echo "alias l='ls -CF'" >> ~/.bashrc \
-  && echo "eval $$(starship init bash)" >> ~/.bashrc
+  && echo 'eval $(starship init bash)' >> ~/.bashrc
 COPY .bash_aliases "/home/${USERNAME}/"
 COPY .bash_functions "/home/${USERNAME}/"
 
