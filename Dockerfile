@@ -68,4 +68,6 @@ RUN apk add --no-cache python3 && curl -sSL https://install.python-poetry.org | 
 # add node
 RUN apk add --no-cache nodejs npm
 
+RUN chown -R ${USERNAME}:${GROUPNAME} ${HOME} && chmod -R 755 ${HOME}
+
 CMD [ "bash" ]
