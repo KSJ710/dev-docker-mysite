@@ -1,6 +1,6 @@
 ARG ALPINE_VERSION=3.19
 
-FROM python:3.12.3-alpine${ALPINE_VERSION} as builder
+FROM python:3.11.9-alpine${ALPINE_VERSION} as builder
 
 ARG AWS_CLI_VERSION=2.15.42
 
