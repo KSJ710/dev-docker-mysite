@@ -55,4 +55,7 @@ RUN echo "alias ll='ls -l'" >> ~/.bashrc \
 COPY .bash_aliases "/home/${USERNAME}/"
 COPY .bash_functions "/home/${USERNAME}/"
 
+# add rust
+RUN apk add --no-cache curl gcc rust cargo && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . $HOME/.cargo/env
+
 CMD [ "bash" ]
