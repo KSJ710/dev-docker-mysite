@@ -63,6 +63,6 @@ RUN apk add --no-cache curl gcc rust cargo && curl --proto '=https' --tlsv1.2 -s
 RUN apk add --no-cache python3 && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion
 
 # add node
-RUN apk add --no-cache nodejs nodejs-npm
+RUN apk add --no-cache nodejs
 
 CMD [ "bash" ]
