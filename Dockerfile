@@ -42,7 +42,7 @@ RUN apk update && apk add --no-cache shadow curl sudo tzdata \
   && echo "root:root" | chpasswd \
   && sudo groupadd docker && sudo usermod -aG docker ${USERNAME}
 
-RUN apk add --no-cache git bash vim less wget bind-tools \
+RUN apk add --no-cache git bash vim less wget bind-tools\
   && sudo wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && sudo unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && sudo mv terraform /usr/bin/terraform
@@ -57,5 +57,11 @@ COPY .bash_functions "/home/${USERNAME}/"
 
 # add rust
 RUN apk add --no-cache curl gcc rust cargo && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . $HOME/.cargo/env
+
+# add python
+RUN apk add --no-cache python3 py3-pip && pip3 install --upgrade pip && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion
+
+# add node
+RUN apk add --no-cache node npm
 
 CMD [ "bash" ]
