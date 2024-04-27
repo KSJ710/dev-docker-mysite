@@ -32,6 +32,7 @@ ARG GID=1710
 ARG HOME=/home/${USERNAME}
 ARG TERRAFORM_VERSION=1.8.2
 ENV LANG C.UTF-8
+ENV PATH=${HOME}/.local/bin:$PATH
 
 RUN apk update && apk add --no-cache shadow curl sudo tzdata \
   && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && apk del tzdata \
