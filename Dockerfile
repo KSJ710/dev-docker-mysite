@@ -52,15 +52,15 @@ RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 RUN echo "alias ll='ls -l'" >> ~/.bashrc \
   && echo "alias la='ls -la'" >> ~/.bashrc \
   && echo "alias l='ls -CF'" >> ~/.bashrc \
-  && echo 'eval "$(starship init bash)"' >> ~/.bashrc
-COPY .bash_aliases "/home/${USERNAME}/"
-COPY .bash_functions "/home/${USERNAME}/"
+  && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
+  && echo '. ~/.bashrc' >> ~/.profile \
+COPY .bash_aliases "/home/${USERNAME}/" && .bash_functions "/home/${USERNAME}/"
 
 # add rust
 RUN apk add --no-cache curl gcc rust cargo && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . $HOME/.cargo/env
 
 # add python
-RUN apk add --no-cache python3 && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion
+RUN apk add --no-cache python3 && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion && poetry config virtualenvs.in-project true
 
 # add node
 RUN apk add --no-cache nodejs npm
