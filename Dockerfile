@@ -52,6 +52,8 @@ RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 RUN echo "alias ll='ls -l'" >> ~/.bashrc \
   && echo "alias la='ls -la'" >> ~/.bashrc \
   && echo "alias l='ls -CF'" >> ~/.bashrc \
+  && echo 'source ~/.bash_aliases' >> ~/.bashrc \
+  && echo 'source ~/.bash_functions' >> ~/.bashrc \
   && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
   && echo '. ~/.bashrc' >> ~/.profile
 COPY .bash_aliases "/home/${USERNAME}/"
