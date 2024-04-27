@@ -53,7 +53,7 @@ RUN echo "alias ll='ls -l'" >> ~/.bashrc \
   && echo "alias la='ls -la'" >> ~/.bashrc \
   && echo "alias l='ls -CF'" >> ~/.bashrc \
   && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
-  && echo '. ~/.bashrc' >> ~/.profile \
+  && echo '. ~/.bashrc' >> ~/.profile
 COPY .bash_aliases "/home/${USERNAME}/"
 COPY .bash_functions "/home/${USERNAME}/"
 
