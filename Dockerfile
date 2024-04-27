@@ -59,7 +59,7 @@ COPY .bash_functions "/home/${USERNAME}/"
 RUN apk add --no-cache curl gcc rust cargo && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . $HOME/.cargo/env
 
 # add python
-RUN apk add --no-cache python3 py3-pip && pip3 install --upgrade pip && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion
+RUN apk add --no-cache python3 && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion
 
 # add node
 RUN apk add --no-cache node npm
