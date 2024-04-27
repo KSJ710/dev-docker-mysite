@@ -40,7 +40,7 @@ RUN apk update && apk add --no-cache shadow curl sudo tzdata \
   && echo "${USERNAME}:${GROUPNAME}" | chpasswd && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
   && echo "Set disable_coredump false" >> /etc/sudo.conf \
   && echo "root:root" | chpasswd \
-  && sudo groupadd docker && sudo usermod -aG docker ${USERNAME}
+  && sudo usermod -aG docker ${USERNAME}
 
 RUN apk add --no-cache git bash vim less wget bind-tools\
   && sudo wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
