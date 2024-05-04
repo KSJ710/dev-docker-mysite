@@ -25,8 +25,8 @@ FROM docker:26.1.0-alpine${ALPINE_VERSION}
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/
 RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
-ARG USERNAME=terraform
-ARG GROUPNAME=terraform
+ARG USERNAME=demo_projects
+ARG GROUPNAME=demo_projects
 ARG UID=1710
 ARG GID=1710
 ARG HOME=/home/${USERNAME}
@@ -56,14 +56,15 @@ RUN echo "alias ll='ls -l'" >> ~/.bashrc \
   && echo 'source ~/.bash_functions' >> ~/.bashrc \
   && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
   && echo '. ~/.bashrc' >> ~/.profile
-COPY .bash_aliases "/home/${USERNAME}/"
-COPY .bash_functions "/home/${USERNAME}/"
+COPY .bash_aliases ${HOME}/
+COPY .bash_functions ${HOME}/
+COPY .vimrc ${HOME}/
 
 # add rust
 RUN apk add --no-cache curl gcc rust cargo && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . $HOME/.cargo/env
 
 # add python
-RUN apk add --no-cache python3 && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion && poetry config virtualenvs.in-project true
+RUN apk add --no-cache python3 py3-pip && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion && poetry config virtualenvs.in-project true
 
 # add node
 RUN apk add --no-cache nodejs npm

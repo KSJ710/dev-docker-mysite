@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  terraform:
+  demo_projects:
     build: .
     container_name: ${CONTAINER_NAME?err}
     ports:
@@ -10,7 +10,7 @@ services:
       app_net:
         ipv4_address: 192.1.10.6
     volumes:
-      - ../app:/home/terraform/app
+      - ../app:/home/demo_projects/app
     tty: true
     privileged: true
 networks:
