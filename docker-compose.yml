@@ -7,7 +7,6 @@ services:
     image: my_web_sample
     container_name: my_web_sample
     environment:
-      DISPLAY: :0
       DB_HOST: 192.168.229.27
       DB_PORT: 5432
       DB_NAME: my_web_sample
