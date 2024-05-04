@@ -26,7 +26,7 @@ RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
 COPY .bash_profile ${HOME}/
 COPY .bashrc ${HOME}/
-COPY .vimrc "/home/${USERNAME}/"
+COPY .vimrc ${HOME}/
 
 # ユーザーのホームディレクトリに作業ディレクトリを設定
 WORKDIR ${HOME}/app
