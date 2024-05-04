@@ -69,6 +69,9 @@ RUN apk add --no-cache python3 py3-pip && curl -sSL https://install.python-poetr
 # add node
 RUN apk add --no-cache nodejs npm
 
+# add golang
+RUN apk add --no-cache go musl-dev
+
 RUN chown -R ${USERNAME}:${GROUPNAME} ${HOME} && chmod -R 755 ${HOME}
 
 CMD [ "bash" ]
