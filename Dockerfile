@@ -1,8 +1,8 @@
-ARG ALPINE_VERSION=3.19
+ARG ALPINE_VERSION=3.20
 
 FROM python:3.11.9-alpine${ALPINE_VERSION} as builder
 
-ARG AWS_CLI_VERSION=2.15.42
+ARG AWS_CLI_VERSION=2.17.16
 
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
 RUN git clone --single-branch --depth 1 -b ${AWS_CLI_VERSION} https://github.com/aws/aws-cli.git
@@ -21,16 +21,16 @@ RUN find /usr/local/lib/aws-cli/awscli/data -name completions-1*.json -delete
 RUN find /usr/local/lib/aws-cli/awscli/botocore/data -name examples-1.json -delete
 RUN (cd /usr/local/lib/aws-cli; for a in *.so*; do test -f /lib/$a && rm $a; done)
 
-FROM docker:26.1.0-alpine${ALPINE_VERSION}
+FROM docker:27.1.1-alpine${ALPINE_VERSION}
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/
 RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
-ARG USERNAME=demo_projects
-ARG GROUPNAME=demo_projects
+ARG USERNAME=need
+ARG GROUPNAME=need
 ARG UID=1710
 ARG GID=1710
 ARG HOME=/home/${USERNAME}
-ARG TERRAFORM_VERSION=1.8.2
+ARG TERRAFORM_VERSION=1.9.2
 ENV LANG C.UTF-8
 ENV PATH=${HOME}/.local/bin:$PATH
 
@@ -60,17 +60,8 @@ COPY .bash_aliases ${HOME}/
 COPY .bash_functions ${HOME}/
 COPY .vimrc ${HOME}/
 
-# add rust
-RUN apk add --no-cache curl gcc rust cargo && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . $HOME/.cargo/env
-
-# add python
-RUN apk add --no-cache python3 py3-pip && curl -sSL https://install.python-poetry.org | python3 - && poetry completions bash >> ~/.bash_completion && poetry config virtualenvs.in-project true
-
 # add node
 RUN apk add --no-cache nodejs npm
-
-# add golang
-RUN apk add --no-cache go musl-dev
 
 RUN chown -R ${USERNAME}:${GROUPNAME} ${HOME} && chmod -R 755 ${HOME}
 
