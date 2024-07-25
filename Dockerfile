@@ -56,9 +56,6 @@ RUN echo "alias ll='ls -l'" >> ~/.bashrc \
   && echo 'source ~/.bash_functions' >> ~/.bashrc \
   && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
   && echo '. ~/.bashrc' >> ~/.profile
-COPY .bash_aliases ${HOME}/
-COPY .bash_functions ${HOME}/
-COPY .vimrc ${HOME}/
 
 # add node
 RUN apk add --no-cache nodejs npm
