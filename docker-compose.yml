@@ -10,7 +10,7 @@ services:
       app_net:
         ipv4_address: 192.24.7.27
     volumes:
-      - ../app:/home/need/app
+      - ../project:/home/need/project
       - ~/.aws/nursing-care-taxi-reservation:/home/need/.aws
       - .bash_aliases:/home/need/.bash_aliases
       - .bash_functions:/home/need/.bash_functions
