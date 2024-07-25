@@ -11,6 +11,7 @@ services:
         ipv4_address: 192.24.7.27
     volumes:
       - ../app:/home/need/app
+      - ~/.aws/nursing-care-taxi-reservation:/home/need/.aws
     tty: true
     privileged: true
   localstack:

@@ -70,5 +70,5 @@
   // "postCreateCommand": "sudo apk add bash curl git vim starship",
 
   // Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "demo_projects"
+  "remoteUser": "need"
 }
