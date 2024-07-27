@@ -6,6 +6,10 @@ tpt () {
   terraform plan -target="${1}"
 }
 
+tpgco () {
+  terraform plan -generate-config-out="${1}"
+}
+
 taat () {
   terraform apply -auto-approve -target="${1}"
 }
