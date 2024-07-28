@@ -50,7 +50,8 @@
         "shardulm94.trailing-spaces",
         "yzhang.markdown-all-in-one",
         "ZainChen.json",
-        "hashicorp.terraform"
+        "hashicorp.terraform",
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
