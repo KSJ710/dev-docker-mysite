@@ -12,11 +12,28 @@ services:
     volumes:
       - ../project:/home/need/project
       - ~/.aws/nursing-care-taxi-reservation:/home/need/.aws
+      - .bash_profile:/home/need/.bash_profile
+      - .bashrc:/home/need/.bashrc
       - .bash_aliases:/home/need/.bash_aliases
       - .bash_functions:/home/need/.bash_functions
       - .vimrc:/home/need/.vimrc
     tty: true
     privileged: true
+  db:
+    image: mysql:8.0.39
+    container_name: mysql_8.0.39
+    environment:
+      MYSQL_ROOT_PASSWORD: local
+      MYSQL_DATABASE: local
+      MYSQL_USER: local
+      MYSQL_PASSWORD: local
+    ports:
+      - "13306:3306"
+    volumes:
+      - ../db:/var/lib/mysql
+    networks:
+      app_net:
+        ipv4_address: 192.24.7.29
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
     image: localstack/localstack

@@ -49,13 +49,6 @@ RUN apk add --no-cache git bash vim less wget bind-tools\
   && sudo mv terraform /usr/bin/terraform
 
 RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
-RUN echo "alias ll='ls -l'" >> ~/.bashrc \
-  && echo "alias la='ls -la'" >> ~/.bashrc \
-  && echo "alias l='ls -CF'" >> ~/.bashrc \
-  && echo 'source ~/.bash_aliases' >> ~/.bashrc \
-  && echo 'source ~/.bash_functions' >> ~/.bashrc \
-  && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
-  && echo '. ~/.bashrc' >> ~/.profile
 
 # add node
 RUN apk add --no-cache nodejs npm
