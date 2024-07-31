@@ -11,7 +11,7 @@ services:
         ipv4_address: 192.24.8.1
     volumes:
       - ../project:/home/developer/project
-      - ~/.aws/nursing-care-taxi-reservation:/home/developer/.aws
+      - ~/.aws/keiju:/home/developer/.aws
       - .bash_profile:/home/developer/.bash_profile
       - .bashrc:/home/developer/.bashrc
       - .bash_aliases:/home/developer/.bash_aliases
