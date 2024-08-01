@@ -5,10 +5,10 @@ services:
     build: .
     container_name: strapi
     ports:
-      - "127.0.0.1:3001:3000"
+      - "127.0.0.1:3000:3000"
     networks:
       app_net:
-        ipv4_address: 192.24.8.1
+        ipv4_address: 192.24.8.100
     volumes:
       - ../project:/home/developer/project
       - ~/.aws/keiju:/home/developer/.aws
@@ -19,22 +19,22 @@ services:
       - .vimrc:/home/developer/.vimrc
     tty: true
     privileged: true
-  # db:
-  #   image: mysql:8.0.39
-  #   container_name: mysql_8.0.39
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: local
-  #     MYSQL_DATABASE: local
-  #     MYSQL_USER: local
-  #     MYSQL_PASSWORD: local
-  #   command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_bin
-  #   ports:
-  #     - "127.0.0.1:3306:3306"
-  #   volumes:
-  #     - ../db:/var/lib/mysql
-  #   networks:
-  #     app_net:
-  #       ipv4_address: 192.24.7.29
+  db:
+    image: mysql:8.0.39
+    container_name: mysql_8.0.39
+    environment:
+      MYSQL_ROOT_PASSWORD: local
+      MYSQL_DATABASE: local
+      MYSQL_USER: local
+      MYSQL_PASSWORD: local
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_bin
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - ../db:/var/lib/mysql
+    networks:
+      app_net:
+        ipv4_address: 192.24.8.101
   # localstack:
   #   container_name: "nursing-care-taxi-reservation-localstack"
   #   image: localstack/localstack
