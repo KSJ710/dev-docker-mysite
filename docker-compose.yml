@@ -2,10 +2,9 @@ version: "3.9"
 
 services:
   web:
-    build:
-      context: .
+    build: .
     image: my_web_sample
-    container_name: my_web_sample
+    container_name: my_web_sample-web
     environment:
       DB_HOST: 192.168.229.27
       DB_PORT: 5432
@@ -18,16 +17,36 @@ services:
       EMAIL_SERVER_PORT: 1025
       EMAIL_FROM=no-reply@test.comWORD: my_web_sample
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     networks:
       app_net:
         ipv4_address: 192.168.229.26
     volumes:
-      - ../app:/home/my_web_sample/app
-      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ../project:/home/developer/project
+      - ~/.aws/keiju:/home/developer/.aws
+      - .bash_profile:/home/developer/.bash_profile
+      - .bashrc:/home/developer/.bashrc
+      - .bash_aliases:/home/developer/.bash_aliases
+      - .bash_functions:/home/developer/.bash_functions
+      - .vimrc:/home/developer/.vimrc
     tty: true
+  localstack:
+    container_name: "my_web_sample-localstack"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566" # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559" # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    networks:
+      app_net:
+        ipv4_address: 192.168.229.28
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-../localstack}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
   # db:
-  #   image: postgres:14.5-alpine3.16
+  #   image: postgres:16.3-alpine3.20
   #   container_name: my_web_sample_postgres
   #   environment:
   #     POSTGRES_USER: my_web_sample
@@ -38,7 +57,7 @@ services:
   #     TZ: Asia/Tokyo
   #   command: postgres -c tcp_keepalives_idle=30 -c tcp_keepalives_interval=10 -c tcp_keepalives_count=2
   #   ports:
-  #     - "5432:5432"
+  #     - "127.0.0.1: 5432:5432"
   #   networks:
   #     app_net:
   #       ipv4_address: 192.168.229.27
@@ -47,8 +66,8 @@ services:
   # smtp:
   #   image: schickling/mailcatcher
   #   ports:
-  #     - "1080:1080"
-  #     - "1025:1025"
+  #     - "127.0.0.1:1080:1080"
+  #     - "127.0.0.1:1025:1025"
   #   networks:
   #     app_net:
   #       ipv4_address: 192.168.229.28
