@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.194.3/containers/docker-existing-docker-compose
 // If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 {
-  "name": "template",
+  "name": "Need",
 
   // Update the 'dockerComposeFile' list if you have more compose files or use different names.
   // The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
@@ -15,7 +15,7 @@
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
   // "workspaceFolder": "/workspace",
-  "workspaceFolder": "/home/template/app",
+  "workspaceFolder": "/home/need/project",
 
   "customizations": {
     "vscode": {
@@ -29,8 +29,6 @@
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
-        "mhutchie.git-graph",
-        "damildrizzy.fastapi-snippets",
         "usernamehw.errorlens",
         "naumovs.color-highlight",
         "GitHub.copilot",
@@ -49,9 +47,11 @@
         "MS-CEINTL.vscode-language-pack-ja",
         "oderwat.indent-rainbow",
         "shardulm94.trailing-spaces",
-        "soerenuhrbach.vscode-deepl",
         "yzhang.markdown-all-in-one",
-        "ZainChen.json"
+        "ZainChen.json",
+        "hashicorp.terraform",
+        "ms-azuretools.vscode-docker",
+        "Prisma.prisma"
       ]
     }
   },
@@ -71,5 +71,5 @@
   // "postCreateCommand": "sudo apk add bash curl git vim starship",
 
   // Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "template"
+  "remoteUser": "need"
 }
