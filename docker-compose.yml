@@ -21,7 +21,7 @@ services:
     privileged: true
   db:
     image: mysql:8.0.39
-    container_name: mysql_8.0.39
+    container_name: mysql_strapi
     environment:
       MYSQL_ROOT_PASSWORD: local
       MYSQL_DATABASE: local
