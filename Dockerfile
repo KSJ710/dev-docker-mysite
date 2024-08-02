@@ -50,9 +50,6 @@ RUN apk add --no-cache git bash vim less wget bind-tools\
 
 RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
-# add node
-RUN apk add --no-cache nodejs npm
-
 RUN chown -R ${USERNAME}:${GROUPNAME} ${HOME} && chmod -R 755 ${HOME}
 
 CMD [ "bash" ]
