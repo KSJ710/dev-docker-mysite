@@ -6,7 +6,7 @@ services:
     image: my_web_sample
     container_name: my_web_sample-web
     environment:
-      DB_HOST: 192.24.81.3
+      DB_HOST: 192.168.83.3
       DB_PORT: 5432
       DB_NAME: my_web_sample
       DB_USERNAME: my_web_sample
@@ -17,10 +17,10 @@ services:
       EMAIL_SERVER_PORT: 1025
       EMAIL_FROM=no-reply@test.comWORD: my_web_sample
     ports:
-      - "127.0.0.1:3001:3000"
+      - "127.0.0.1:3000:3000"
     networks:
       app_net:
-        ipv4_address: 192.24.81.1
+        ipv4_address: 192.168.83.1
     volumes:
       - ../project:/home/developer/project
       - ~/.aws/keiju:/home/developer/.aws
@@ -41,7 +41,7 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
     networks:
       app_net:
-        ipv4_address: 192.24.81.2
+        ipv4_address: 192.168.83.2
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-../localstack}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
@@ -60,7 +60,7 @@ services:
   #     - "127.0.0.1: 5432:5432"
   #   networks:
   #     app_net:
-  #       ipv4_address: 192.24.8.3
+  #       ipv4_address: 192.200.8.3
   #   volumes:
   #     - ../postgresql_data:/var/lib/postgresql/data
   # smtp:
@@ -70,7 +70,7 @@ services:
   #     - "127.0.0.1:1025:1025"
   #   networks:
   #     app_net:
-  #       ipv4_address: 192.24.81.4
+  #       ipv4_address: 192.200.81.4
 
 networks:
   app_net:
@@ -78,7 +78,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.24.81.0/24
+        - subnet: 192.168.83.0/24
 
 volumes:
   posgre_data: null
