@@ -1,16 +1,16 @@
 version: "3.9"
 
 services:
-  demo_projects:
+  web:
     build: .
-    container_name: ${CONTAINER_NAME?err}
+    container_name: demo_projects
     ports:
       - "11111:11111"
     networks:
       app_net:
         ipv4_address: 192.1.10.6
     volumes:
-      - ../app:/home/demo_projects/app
+      - ../project:/home/developer/project
     tty: true
     privileged: true
 networks:
