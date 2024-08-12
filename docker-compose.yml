@@ -3,9 +3,7 @@ version: "3.9"
 services:
   web:
     build: .
-    container_name: nursing-care-taxi-reservation
-    ports:
-      - "127.0.0.1:3000:3000"
+    container_name: TBD
     networks:
       app_net:
         ipv4_address: 192.24.7.27
