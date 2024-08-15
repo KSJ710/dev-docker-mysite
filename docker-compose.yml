@@ -1,12 +1,12 @@
 version: "3.9"
 
 services:
-  web:
+  maruti:
     build: .
-    container_name: demo_projects
+    container_name: tauri
     networks:
       app_net:
-        ipv4_address: 192.168.10.4
+        ipv4_address: 10.24.81.10
     volumes:
       - ../project:/home/developer/project
     tty: true
@@ -17,4 +17,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.10.0/24
+        - subnet: 10.24.81.0/24
