@@ -10,6 +10,11 @@ services:
     volumes:
       - ../project:/home/developer/project
       - /opt/android_sdk:/home/developer/project/android_sdk
+      - .bash_profile:/home/developer/.bash_profile
+      - .bashrc:/home/developer/.bashrc
+      - .bash_aliases:/home/developer/.bash_aliases
+      - .bash_functions:/home/developer/.bash_functions
+      - .vimrc:/home/developer/.vimrc
     tty: true
     privileged: true
 networks:

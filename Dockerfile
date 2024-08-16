@@ -58,20 +58,6 @@ RUN usermod -aG docker $USERNAME
 
 RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
-USER ${USERNAME}
-
-RUN echo '. ~/.bashrc' >> ~/.profile \
-  && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
-  && echo "alias ll='ls -l'" >> ~/.bashrc \
-  && echo "alias la='ls -la'" >> ~/.bashrc \
-  && echo "alias l='ls -CF'" >> ~/.bashrc \
-  && echo 'source ~/.bash_aliases' >> ~/.bashrc \
-  && echo 'source ~/.bash_functions' >> ~/.bashrc \
-  && echo 'export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")' >> ~/.bashrc \
-  && echo "export JAVA_HOME=$JAVA_HOME" >> ~/.bashrc \
-  && echo "sudo service docker start > /dev/null 2>&1" >> ~/.bashrc
-COPY .bash_aliases ${HOME}/
-COPY .bash_functions ${HOME}/
-COPY .vimrc ${HOME}/
+RUN chown -R ${USERNAME}:${GROUPNAME} ${HOME} && chmod -R 755 ${HOME}
 
 CMD [ "bash" ]
