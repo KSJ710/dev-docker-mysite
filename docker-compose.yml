@@ -9,6 +9,7 @@ services:
         ipv4_address: 10.24.81.10
     volumes:
       - ../project:/home/developer/project
+      - /opt/android_sdk:/home/developer/project/android_sdk
     tty: true
     privileged: true
 networks:
