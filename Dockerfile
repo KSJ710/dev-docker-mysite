@@ -2,8 +2,8 @@ FROM ubuntu:latest
 
 ARG USERNAME=developer
 ARG GROUPNAME=developer
-ARG UID=1710
-ARG GID=1710
+ARG UID=1002
+ARG GID=1002
 ARG HOME=/home/${USERNAME}
 ENV LANG C.UTF-8
 ENV PATH=${HOME}/.local/bin:$PATH
@@ -43,11 +43,9 @@ RUN apt-get update && apt-get install -y ca-certificates curl gnupg \
     && install -m 0755 -d /etc/apt/keyrings \
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
     && chmod a+r /etc/apt/keyrings/docker.gpg
-
 RUN echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-
 RUN apt-get update \
     && apt-get install -y docker-ce docker-ce-cli
 
@@ -56,9 +54,11 @@ RUN groupadd -g ${GID} ${GROUPNAME} \
     && useradd -m -u ${UID} -g ${GID} -s /bin/bash ${USERNAME} \
     && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN gpasswd -a ${USERNAME} docker
+RUN usermod -aG docker $USERNAME
 
 RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
+
+USER ${USERNAME}
 
 RUN echo '. ~/.bashrc' >> ~/.profile \
   && echo 'eval "$(starship init bash)"' >> ~/.bashrc \
@@ -69,12 +69,9 @@ RUN echo '. ~/.bashrc' >> ~/.profile \
   && echo 'source ~/.bash_functions' >> ~/.bashrc \
   && echo 'export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")' >> ~/.bashrc \
   && echo "export JAVA_HOME=$JAVA_HOME" >> ~/.bashrc \
-  && echo "newgrp docker" >> ~/.bashrc
+  && echo "sudo service docker start > /dev/null 2>&1" >> ~/.bashrc
 COPY .bash_aliases ${HOME}/
 COPY .bash_functions ${HOME}/
 COPY .vimrc ${HOME}/
-
-
-RUN chown -R ${USERNAME}:${GROUPNAME} ${HOME} && chmod -R 755 ${HOME}
 
 CMD [ "bash" ]
