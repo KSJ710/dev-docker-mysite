@@ -78,6 +78,7 @@ if command -v starship &> /dev/null; then
     eval "$(starship init bash)"
 fi
 
+. $HOME/.cargo/env
 export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 export JAVA_HOME=$JAVA_HOME
 sudo service docker start > /dev/null 2>&1
