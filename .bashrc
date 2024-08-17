@@ -82,3 +82,8 @@ fi
 export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 export JAVA_HOME=$JAVA_HOME
 sudo service docker start > /dev/null 2>&1
+
+export ANDROID_HOME=$HOME/project/Android/Sdk
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
