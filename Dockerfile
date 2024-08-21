@@ -21,37 +21,77 @@ RUN find /usr/local/lib/aws-cli/awscli/data -name completions-1*.json -delete
 RUN find /usr/local/lib/aws-cli/awscli/botocore/data -name examples-1.json -delete
 RUN (cd /usr/local/lib/aws-cli; for a in *.so*; do test -f /lib/$a && rm $a; done)
 
-FROM docker:27.1.1-alpine${ALPINE_VERSION}
+FROM ubuntu:latest
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/
 RUN ln -s /usr/local/lib/aws-cli/aws /usr/local/bin/aws
 
 ARG USERNAME=developer
 ARG GROUPNAME=developer
-ARG UID=1710
-ARG GID=1710
+ARG UID=1002
+ARG GID=1002
 ARG HOME=/home/${USERNAME}
 ARG TERRAFORM_VERSION=1.9.2
-ENV LANG C.UTF-8
 ENV PATH=${HOME}/.local/bin:$PATH
+ENV LANG ja_JP.UTF-8
 
-RUN apk update && apk add --no-cache shadow curl sudo tzdata \
-  && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && apk del tzdata \
-  && groupadd -g ${GID} ${GROUPNAME} \
-  && useradd -m -u ${UID} -g ${GID} ${USERNAME}  \
-  && echo "${USERNAME}:${GROUPNAME}" | chpasswd && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
-  && echo "Set disable_coredump false" >> /etc/sudo.conf \
-  && echo "root:root" | chpasswd \
-  && sudo usermod -aG docker ${USERNAME}
+# Install basic packages
+RUN apt-get update && apt-get install -y \
+    tzdata \
+    curl \
+    unzip \
+    git \
+    sudo \
+    vim \
+    build-essential \
+    apt-transport-https \
+    ca-certificates \
+    gnupg \
+    lsb-release \
+    libwebkit2gtk-4.1-dev \
+    wget \
+    file \
+    libxdo-dev \
+    libssl-dev \
+    libayatana-appindicator3-dev \
+    librsvg2-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apk add --no-cache git bash vim less wget bind-tools\
-  && sudo wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
-  && sudo unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
-  && sudo mv terraform /usr/bin/terraform
+# タイムゾーンを日本時間に設定
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    echo "Asia/Tokyo" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash - \
+    && apt-get install -y nodejs
+
+# Install Docker
+RUN install -m 0755 -d /etc/apt/keyrings \
+    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
+    && chmod a+r /etc/apt/keyrings/docker.gpg
+RUN echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+RUN apt-get update \
+    && apt-get install -y docker-ce docker-ce-cli
+
+# Create user and set permissions
+RUN groupadd -g ${GID} ${GROUPNAME} \
+    && useradd -m -u ${UID} -g ${GID} -s /bin/bash ${USERNAME} \
+    && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+RUN usermod -aG docker $USERNAME
+
+RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+  && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+  &&  mv terraform /usr/bin/terraform
 
 RUN sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
-# add node
-RUN apk add --no-cache nodejs npm
+RUN wget https://github.com/nushell/nushell/releases/download/0.96.1/nu-0.96.1-x86_64-unknown-linux-gnu.tar.gz \
+  && tar -xvf nu-0.96.1-x86_64-unknown-linux-gnu.tar.gz \
+  && mv nu-0.96.1-x86_64-unknown-linux-gnu/nu /usr/local/bin/nu \
+  && rm -rf nu-0.96.1-x86_64-unknown-linux-gnu.tar.gz nu-0.96.1-x86_64-unknown-linux-gnu
 
 RUN chown -R ${USERNAME}:${GROUPNAME} ${HOME} && chmod -R 755 ${HOME}
 
