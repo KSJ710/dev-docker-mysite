@@ -28,6 +28,7 @@ services:
       - .bash_functions:/home/developer/.bash_functions
       - .vimrc:/home/developer/.vimrc
     tty: true
+    privileged: true
   localstack:
     container_name: "my_web_sample-localstack"
     image: localstack/localstack

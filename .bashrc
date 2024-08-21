@@ -77,3 +77,7 @@ fi
 if command -v starship &> /dev/null; then
     eval "$(starship init bash)"
 fi
+
+if command -v docker &> /dev/null; then
+    sudo service docker start > /dev/null 2>&1
+fi
