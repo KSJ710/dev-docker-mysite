@@ -3,7 +3,7 @@ version: "3.9"
 services:
   web:
     build: .
-    container_name: giving_spirit
+    container_name: TBD
     networks:
       app_net:
         ipv4_address: 192.25.1.28
@@ -19,7 +19,7 @@ services:
     privileged: true
   db:
     image: mysql:9.2.0
-    container_name: giving_spirit_mysql_9.2.0
+    container_name: TBD_mysql_9.2.0
     environment:
       MYSQL_ROOT_PASSWORD: local
       MYSQL_DATABASE: local
@@ -34,7 +34,7 @@ services:
       app_net:
         ipv4_address: 192.25.1.27
   localstack:
-    container_name: "giving_spirit_reservation_localstack"
+    container_name: "TBD_localstack"
     image: localstack/localstack
     ports:
       - "127.0.0.1:4566:4566" # LocalStack Gateway
