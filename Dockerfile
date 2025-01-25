@@ -1,8 +1,6 @@
-ARG ALPINE_VERSION=3.20
+FROM python:3.11.9-alpine3.20 as builder
 
-FROM python:3.11.9-alpine${ALPINE_VERSION} as builder
-
-ARG AWS_CLI_VERSION=2.17.16
+ARG AWS_CLI_VERSION=2.23.6
 
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
 RUN git clone --single-branch --depth 1 -b ${AWS_CLI_VERSION} https://github.com/aws/aws-cli.git
@@ -30,7 +28,7 @@ ARG GROUPNAME=developer
 ARG UID=1002
 ARG GID=1002
 ARG HOME=/home/${USERNAME}
-ARG TERRAFORM_VERSION=1.9.2
+ARG TERRAFORM_VERSION=1.10.5
 ENV PATH=${HOME}/.local/bin:$PATH
 ENV LANG ja_JP.UTF-8
 
