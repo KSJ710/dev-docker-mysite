@@ -9,7 +9,7 @@ services:
         ipv4_address: 192.25.1.28
     volumes:
       - ../project:/home/developer/project
-      - ~/.aws/nursing-care-taxi-reservation:/home/developer/.aws
+      - ~/.aws/keju:/home/developer/.aws
       - .bash_profile:/home/developer/.bash_profile
       - .bashrc:/home/developer/.bashrc
       - .bash_aliases:/home/developer/.bash_aliases
@@ -25,7 +25,7 @@ services:
       MYSQL_DATABASE: local
       MYSQL_USER: local
       MYSQL_PASSWORD: local
-    command: --default-authentication-plugin=caching_sha2_password --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_bin
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_bin
     ports:
       - "127.0.0.1:3306:3306"
     volumes:
